@@ -1,0 +1,8 @@
+- name: Demo on create a file on remote node.
+  hosts: nodes
+  tasks:
+    -name: Create a file 
+     file:
+       path: /tmp/student.sql
+       state: touch
+       

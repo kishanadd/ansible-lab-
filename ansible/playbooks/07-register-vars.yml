@@ -1,0 +1,9 @@
+- name: Demo on register variables 
+  hosts: nodes
+  tasks:
+    - name: Run some shell commands 
+      shell: who |wc -l
+      register: out 
+    - name: Print no of users logged in    
+      debug:
+        msg: "No of Users = {{out.stdout}}"

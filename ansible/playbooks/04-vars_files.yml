@@ -1,0 +1,8 @@
+- name: Demo in vars_ files 
+  hosts: nodes 
+  vars_files:
+    - vars01.yml
+  tasks:
+    - name: Print URL
+      debug:
+       msg: "URL -{{URL}}"

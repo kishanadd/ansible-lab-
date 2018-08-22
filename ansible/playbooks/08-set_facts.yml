@@ -1,0 +1,12 @@
+- name: Demo on register variables 
+  hosts: nodes
+  tasks:
+    - name: Run some shell commands 
+      shell: who |wc -l
+      register: out 
+    - name: define no of users variables
+      set_fact:
+        NO_OF_USERS: "{{out.stdout}}" 
+    - name: Print no of users logged in    
+      debug:
+        msg: "No of Users = {{NO_OF_USERS}}"

@@ -1,0 +1,10 @@
+- name: Demo on vars_prompt 
+  hosts: nodes
+  vars_prompt:
+    - name: URL
+      prompt: Enter URL 
+      private: no
+  tasks: 
+    - name: Print URL 
+      debug:
+        msg: "URL = {{URL}}"

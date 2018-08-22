@@ -1,0 +1,32 @@
+- name: become on play level
+  hosts: nodes
+  become: yes
+  tasks:
+    - name: Restart sshd service 
+      service:
+        name: sshd
+        state: restarted
+
+    - name: Run id command
+      shell: id 
+      register: out
+
+    - debug:
+        msg: "Output : {{out.stdout}}"
+
+
+- name: become on task level
+  hosts: nodes
+  tasks:
+    - name: Restart sshd service 
+      become: yes
+      service:
+        name: sshd
+        state: restarted
+
+    - name: Run id command
+      shell: id 
+      register: out
+
+    - debug:
+        msg: "Output : {{out.stdout}}"

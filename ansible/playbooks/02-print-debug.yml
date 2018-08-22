@@ -1,0 +1,11 @@
+- name: Print HELLO WORLD 
+  hosts: nodes
+  tasks:
+    - name: Print Hello World 
+      debug:
+        msg: "Hello World" 
+
+    - name: Print New World 
+      debug:
+        msg: "Hello New World"         
+

@@ -1,0 +1,7 @@
+- hosts: proxynodes
+  vars:
+    HOST_COUNT: "{{ groups['nodes'] | length }}"
+  tasks:
+    - debug: msg="{{HOST_COUNT}}"
+    - debug: msg="{{item}}"
+      loop: "{{ groups['nodes']}}"

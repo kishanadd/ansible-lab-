@@ -1,0 +1,23 @@
+- name: Demo on handlers
+  hosts: nd
+  become: yes
+  tasks:
+    - name: Install Web Server
+      package: 
+        name: httpd
+        state: installed
+      notify: Restart HTTPD
+
+    - name: Install tools 
+      package:
+        name: httpd-tools 
+        state: installed
+      notify: Restart HTTPD 
+
+  handlers:
+    - name: Restart HTTPD 
+      service:
+        name: httpd
+        state: restarted
+
+  

@@ -1,0 +1,55 @@
+- name: Setup DB Server
+  hosts: dbnodes
+  become: yes
+  gather_facts: yes
+  tags:
+    - DB
+  tasks:
+    - name: Install MariaDB Server.
+      package:
+        name: "{{item}}"
+        state: installed
+      loop:
+        - mariadb-server
+        - MySQL-python
+
+    - name: Start MariaDB Service
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Create studentapp DB 
+      mysql_db:
+        name: studentapp
+        state: present
+        
+    - name: Create student.sql file 
+      blockinfile:
+        path: /tmp/student.sql
+        create: yes
+        block: |
+          CREATE TABLE if not exists Students(student_id INT NOT NULL AUTO_INCREMENT,
+            student_name VARCHAR(100) NOT NULL,
+            student_addr VARCHAR(100) NOT NULL,
+            student_age VARCHAR(3) NOT NULL,
+            student_qual VARCHAR(20) NOT NULL,
+            student_percent VARCHAR(10) NOT NULL,
+            student_year_passed VARCHAR(10) NOT NULL,
+            PRIMARY KEY (student_id)
+          );
+    - name: Create database schema.
+      mysql_db:
+        name: studentapp
+        state: import
+        target: /tmp/student.sql
+
+    - name: Create DB User.
+      mysql_user:
+        name: student
+        password: student@1
+        priv: 'studentapp.*:ALL'
+        state: present
+        host: '%'
+
+hostvars[groups['dbnodes'][0]]['ansible_eth0']['ipv4']['address']

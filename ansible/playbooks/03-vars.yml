@@ -1,0 +1,26 @@
+- name: Demo on vars
+  hosts: all
+  vars:
+   URL: playbook.google.com
+  tasks:
+    - name: Print URL 
+      debug: 
+        msg: "URL = {{URL}}"
+
+    - name: Define and access variable at task level
+      vars:
+        URL: task.google.com
+      debug:
+        msg: "URL = {{URL}}"
+    - name: Define CMD  variable at task level
+      debug:
+        msg: "ENV = {{ENV}}"
+    - name: ACcess variables from inventory - induvidual host varaisble 
+      debug:
+        msg: "VALUE = {{VALUE}}"
+
+    - name: Access variables from inventory - GROUP host varaisble 
+      debug:
+        msg: "VALUE = {{GROUP_VALUE}}"    
+    
+

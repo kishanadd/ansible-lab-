@@ -1,0 +1,14 @@
+- name: Demo on create a file on remote node.
+  hosts: nodes
+  tasks:
+    - name: Create a file some content.
+      blockinfile:
+        path: /tmp/sample.txt
+        create: yes 
+        block: |
+         LINE1
+         LINE2
+         Line55 to 45 and 199
+
+       
+       

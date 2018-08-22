@@ -1,0 +1,6 @@
+- name: Add nodes to backend config
+      lineinfile:
+        path: /home/ec2-user/rama/sam.txt
+        insertafter: '#WEBNODES'
+        line: "   server  {{item}} {{item}}:80 check"
+      loop: "{{ groups['nodes']}}"

@@ -1,0 +1,7 @@
+- name: Demo on roles
+  hosts: nd
+  become: yes
+  gather_facts: yes
+  roles:
+    - role: webservice
+      TOMCAT_IP: 192.168.1.9

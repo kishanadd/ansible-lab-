@@ -1,0 +1,18 @@
+- name: Demo on tags in tasks
+  hosts: nodes
+  tags:
+    - INFO
+  tasks:
+    - name: INFO
+      debug:
+        msg: "LOG LEVEL = INFO"
+      
+- name: Demo on tags in tasks
+  hosts: nodes
+  tags:
+    - ERROR
+  tasks:
+    - name: ERROR
+      debug:          
+        msg: "LOG LEVEL =ERROR"
+     

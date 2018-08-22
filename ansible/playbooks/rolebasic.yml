@@ -1,0 +1,4 @@
+- name: Demo on basic roles - demo folder 
+  hosts: nd
+  roles: 
+    - demo

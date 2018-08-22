@@ -1,0 +1,9 @@
+## Vars from one play to another play, Where hosts are same. 
+- name: Demo on vars frm play1 to play2
+  hosts: dbnodes
+  gather_facts: yes
+  vars:
+    IP: 192168
+  tasks:
+    - shell: echo hai
+      register: out

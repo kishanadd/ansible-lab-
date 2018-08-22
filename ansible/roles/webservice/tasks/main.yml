@@ -1,0 +1,24 @@
+- name: Install Web Server
+  package:
+    name: httpd
+    state: installed
+  notify: Restart httpd
+
+- name: Download mod_jk.so  
+  copy:
+    src: mod_jk.so
+    dest: /etc/httpd/modules/mod_jk.so
+    mode: 0775
+  notify: Restart httpd
+
+- name: Copy mod-jk.conf file
+  copy:
+    src: mod-jk.conf 
+    dest: /etc/httpd/conf.d/mod-jk.conf
+  notify: Restart httpd
+
+- name: Copy workers file
+  template:
+    src: worker.properties.j2
+    dest: /etc/httpd/conf.d/worker.properties
+  notify: Restart httpd

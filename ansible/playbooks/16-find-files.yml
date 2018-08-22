@@ -1,0 +1,12 @@
+- name: Demo on finding files 
+  hosts: nodes
+  become: yes
+  tasks:
+    - find: 
+        paths: /opt/apache-tomcat-9.0.10/webapps
+        file_type: any
+      register: out
+    - debug:
+        msg: "{{out}}"
+
+        

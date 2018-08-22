@@ -1,0 +1,13 @@
+- name: Demo without handlers
+  hosts: nd
+  become: yes
+  tasks:
+    - name: install httpd web server 
+      package:
+        name: httpd
+        state: installed
+      register: out
+
+    - debug: msg="{{out}}"
+      when: out.changed == True    
+

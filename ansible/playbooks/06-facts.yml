@@ -1,0 +1,7 @@
+- name: Demo on facts
+  hosts: nodes
+  gather_facts: yes
+  tasks:
+    - name: Print full hostname 
+      debug:
+        msg: "FULL HOSTNAME = {{ansible_fqdn}}"

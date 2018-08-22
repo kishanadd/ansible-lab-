@@ -1,0 +1,9 @@
+- name: Demo on loops 
+  hosts: nodes
+  tasks: 
+    - name: Loop Print
+      debug:
+        msg: "Hello, {{item}}"
+      loop:
+        - Raju
+        - Rahim   

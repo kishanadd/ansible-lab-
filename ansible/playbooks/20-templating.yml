@@ -1,0 +1,8 @@
+- name: Demo on templates
+  hosts: nodes
+  gather_facts: true
+  tasks:
+    - name: Copy a template
+      template:
+        src: sample.txt.j2
+        dest: /tmp/sample.txt 

@@ -1,0 +1,4 @@
+- debug: 
+    msg: "Hello Task1 from role"
+
+- debug: msg="Hello Task2 from role"
